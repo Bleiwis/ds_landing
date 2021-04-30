@@ -5,7 +5,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import { getMetadata } from '../../../redux/actions/userActions';
-
+import logo from '../../../assets/icons/dspay-horizontal.svg'
 
 const AuthToolbar = ({ classes, id, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle }) => {
   const { user, getAccessTokenSilently } = useAuth0();
@@ -25,6 +25,7 @@ const AuthToolbar = ({ classes, id, handleProfileMenuOpen, handleMobileMenuOpen,
 
   return (
     <Toolbar>
+      <img src={logo} alt="logo" className={classes.logo} />
       <IconButton
         color="inherit"
         aria-label="open drawer"

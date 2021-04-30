@@ -100,20 +100,18 @@ const NavigationBar = () => {
 
   const LoguedBarsId = 'logued bars id';
 
-  const loguedBars = (
-    <Fragment>
-      <AuthToolbar
-        classes={classes}
-        id={LoguedBarsId}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-        handleMobileMenuOpen={handleMobileMenuOpen}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-      <nav className={classes.drawer} aria-label="list items">
-      </nav>
-    </Fragment>
-  );
+
+  <AuthToolbar
+    classes={classes}
+    id={LoguedBarsId}
+    handleProfileMenuOpen={handleProfileMenuOpen}
+    handleMobileMenuOpen={handleMobileMenuOpen}
+    handleDrawerToggle={handleDrawerToggle}
+  />
+
+
   const menuId = 'menu desktop';
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -130,6 +128,7 @@ const NavigationBar = () => {
   );
 
   const mobileMenuId = 'menu mobile';
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -180,7 +179,15 @@ const NavigationBar = () => {
   return (
     <AppBar className={classes.appBar}>
       <Fragment>
-        {isAuthenticated ? (<AuthToolbar classes={classes} />) : (<MainToolbar classes={classes} />)}
+        {isAuthenticated ? (
+          <AuthToolbar
+            classes={classes}
+            id={LoguedBarsId}
+            handleProfileMenuOpen={handleProfileMenuOpen}
+            handleMobileMenuOpen={handleMobileMenuOpen}
+            handleDrawerToggle={handleDrawerToggle}
+          />) :
+          (<MainToolbar classes={classes} />)}
         {renderMobileMenu}
         {renderMenu}
       </Fragment>
