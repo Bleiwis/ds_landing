@@ -6,7 +6,6 @@ import MainToolbar from './Toolbars/MainToolbar'
 import { makeStyles } from '@material-ui/core'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useHistory } from 'react-router'
-
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -18,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     width: '100%',
+    backgroundColor: '#FFF'
   },
 
   menuButton: {
@@ -178,7 +178,7 @@ const NavigationBar = () => {
 
 
   return (
-    <AppBar>
+    <AppBar className={classes.appBar}>
       <Fragment>
         {isAuthenticated ? (<AuthToolbar classes={classes} />) : (<MainToolbar classes={classes} />)}
         {renderMobileMenu}

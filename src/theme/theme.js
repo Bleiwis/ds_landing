@@ -72,6 +72,7 @@ export const Theme = createMuiTheme({
         },
       },
     },
+
   },
   //overrides over props of components
   props: {
@@ -101,6 +102,6 @@ export const Theme = createMuiTheme({
     },
     MuiSelect: {
       variant: 'outlined'
-    }
+    },
   }
 });

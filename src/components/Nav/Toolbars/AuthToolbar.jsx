@@ -10,6 +10,8 @@ import { getMetadata } from '../../../redux/actions/userActions';
 const AuthToolbar = ({ classes, id, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle }) => {
   const { user, getAccessTokenSilently } = useAuth0();
   const { name, picture } = user;
+  const menuId = 'main menu';
+  const mobileMenuId = 'mobile menu';
   const dispatch = useDispatch();
 
   useEffect(() => {
