@@ -1,6 +1,6 @@
 import React from 'react'
 import { Toolbar, Button } from '@material-ui/core'
-import { ReactComponent as logo } from '../../../assets/icons/dspay-horizontal.svg';
+import logo from '../../../assets/icons/dspay-horizontal.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const MainToolbar = ({ classes }) => {

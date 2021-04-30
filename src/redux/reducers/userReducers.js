@@ -1,4 +1,4 @@
-import { GET_USER_METADATA, CREATE_USER, CREATE_USER_FAILED, LIST_USERS } from "../actions/userActions";
+import { GET_USER_METADATA, CREATE_USER, LIST_USERS } from "../actions/userActions";
 
 const initialState = {
   metadata: [],
