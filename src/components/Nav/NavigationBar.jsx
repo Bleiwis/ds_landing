@@ -84,7 +84,6 @@ const NavigationBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [boxAnchorel, setBoxAnchorel] = useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const boxApp = Boolean(boxAnchorel);
@@ -200,7 +199,7 @@ const NavigationBar = () => {
 
       <Grid container spacing={1} justify="space-evenly" alignItems="center" className={classes.boxApp}>
         <Grid item xs={4} sm={4}>
-          <IconButton>
+          <IconButton href='https://dashboard.cris-mur.tech'>
             <SvgIcon component={dashboard} viewBox="0 0 32 32" style={{ fontSize: 60 }} />
           </IconButton>
           <Typography align="center">Principal</Typography>

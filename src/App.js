@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router';
 import NavigationBar from './components/Nav/NavigationBar';
 import { Theme } from './theme/theme'
 import Landing from './pages/landing/Landing';
-import { useAuth0 } from '@auth0/auth0-react';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
