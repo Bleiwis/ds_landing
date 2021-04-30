@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Badge, IconButton, Menu, MenuItem, } from '@material-ui/core'
+import { AppBar, Badge, Box, Card, Grid, IconButton, Menu, MenuItem, Popover, SvgIcon, Typography, } from '@material-ui/core'
 import { Fragment } from 'react'
 import AuthToolbar from './Toolbars/AuthToolbar'
 import MainToolbar from './Toolbars/MainToolbar'
@@ -10,7 +10,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
+import { ReactComponent as dashboard } from '../../assets/icons/boxicons/dashboard.svg'
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -67,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: 30,
   },
+  boxApp: {
+    width: 260,
+    height: 300,
+    padding: 5
+  }
 
 }));
 
@@ -77,45 +83,52 @@ const NavigationBar = () => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [boxAnchorel, setBoxAnchorel] = useState(null);
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const boxApp = Boolean(boxAnchorel);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const LoguedBarsId = 'logued bars id';
+  const mobileMenuId = 'menu mobile';
+  const menuId = 'menu desktop';
+  const appbox = 'box of aplications';
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
+
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const LoguedBarsId = 'logued bars id';
+  const handleOpenBoxApp = (event) => {
+    setBoxAnchorel(event.currentTarget);
+    console.log('funciona')
+  }
 
-
-  <AuthToolbar
-    classes={classes}
-    id={LoguedBarsId}
-    handleProfileMenuOpen={handleProfileMenuOpen}
-    handleMobileMenuOpen={handleMobileMenuOpen}
-    handleDrawerToggle={handleDrawerToggle}
-  />
-
-
-  const menuId = 'menu desktop';
+  const handleCloseBoxApp = () => {
+    setBoxAnchorel(null);
+  }
 
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       id={menuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -127,12 +140,10 @@ const NavigationBar = () => {
     </Menu>
   );
 
-  const mobileMenuId = 'menu mobile';
-
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -175,21 +186,65 @@ const NavigationBar = () => {
     </Menu>
   );
 
+  const renderBoxAplications = (
+    <Popover
+      elevation={1}
+      anchorEl={boxAnchorel}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      id={appbox}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={boxApp}
+      onClose={handleCloseBoxApp}
+    >
+
+      <Grid container spacing={1} justify="space-evenly" alignItems="center" className={classes.boxApp}>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <SvgIcon component={dashboard} viewBox="0 0 32 32" style={{ fontSize: 60 }} />
+          </IconButton>
+          <Typography align="center">Principal</Typography>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Popover>
+  )
+
 
   return (
-    <AppBar className={classes.appBar}>
+    <AppBar elevation={1} className={classes.appBar}>
       <Fragment>
-        {isAuthenticated ? (
-          <AuthToolbar
-            classes={classes}
-            id={LoguedBarsId}
-            handleProfileMenuOpen={handleProfileMenuOpen}
-            handleMobileMenuOpen={handleMobileMenuOpen}
-            handleDrawerToggle={handleDrawerToggle}
-          />) :
+        {isAuthenticated ?
+          (
+            <AuthToolbar
+              classes={classes}
+              id={LoguedBarsId}
+              handleProfileMenuOpen={handleProfileMenuOpen}
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleDrawerToggle={handleDrawerToggle}
+              handleOpenBoxApp={handleOpenBoxApp}
+
+            />
+          )
+          :
           (<MainToolbar classes={classes} />)}
         {renderMobileMenu}
         {renderMenu}
+        {renderBoxAplications}
       </Fragment>
     </AppBar>
   )

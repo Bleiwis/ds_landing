@@ -6,8 +6,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import { getMetadata } from '../../../redux/actions/userActions';
 import logo from '../../../assets/icons/dspay-horizontal.svg'
+import GrainRoundedIcon from '@material-ui/icons/GrainRounded';
 
-const AuthToolbar = ({ classes, id, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle }) => {
+const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle, handleOpenBoxApp }) => {
   const { user, getAccessTokenSilently } = useAuth0();
   const { name, picture } = user;
   const menuId = 'main menu';
@@ -38,11 +39,11 @@ const AuthToolbar = ({ classes, id, handleProfileMenuOpen, handleMobileMenuOpen,
 
       <div className={classes.grow} />
       <div className={classes.sectionDesktop}>
-
-        <IconButton aria-label="show new notifications" color="inherit">
+        <IconButton aria-label="open app box" color="inherit" onClick={handleOpenBoxApp} >
           {/* <Badge badgeContent={1} color="primary">
             <NotificationsIcon />
           </Badge> */}
+          <GrainRoundedIcon fontSize="large" />
         </IconButton>
         <div>
           <Typography gutterBottom className={classes.labelName}>{name.toUpperCase()}</Typography>
