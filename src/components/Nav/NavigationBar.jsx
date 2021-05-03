@@ -204,7 +204,7 @@ const NavigationBar = () => {
 
       <Grid container spacing={1} justify="space-evenly" alignItems="center" className={classes.boxApp}>
         <Grid item xs={4} sm={4}>
-          <IconButton href={`https://dashboard.cris-mur.tech${cookies}`}>
+          <IconButton href={`https://dashboard.cris-mur.tech?cookie= ${cookies}`}>
             <SvgIcon component={dashboard} viewBox="0 0 32 32" style={{ fontSize: 60 }} />
           </IconButton>
         <Typography align="center">Principal</Typography>
