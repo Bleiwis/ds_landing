@@ -93,7 +93,12 @@ const NavigationBar = () => {
   const mobileMenuId = 'menu mobile';
   const menuId = 'menu desktop';
   const appbox = 'box of aplications';
-
+  const sesionAuth = document.cookie = 'auth0.is.authenticated'
+  const legacyAuth = document.cookie = '_legacy_auth0.is.authenticated'
+  const cookies = [{
+    sesionAuth: sesionAuth,
+    legacyAuth: legacyAuth
+  }]
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -200,54 +205,54 @@ const NavigationBar = () => {
 
       <Grid container spacing={1} justify="space-evenly" alignItems="center" className={classes.boxApp}>
         <Grid item xs={4} sm={4}>
-          <IconButton href='https://dashboard.cris-mur.tech'>
+          <IconButton href={`https://dashboard.cris-mur.tech`}>
             <SvgIcon component={dashboard} viewBox="0 0 32 32" style={{ fontSize: 60 }} />
           </IconButton>
-          <Typography align="center">Principal</Typography>
-        </Grid>
-        <Grid item xs={4} sm={4}>
-          <IconButton>
-            <DashboardRoundedIcon fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid item xs={4} sm={4}>
-          <IconButton>
-            <DashboardRoundedIcon fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid item xs={4} sm={4}>
-          <IconButton>
-            <DashboardRoundedIcon fontSize="large" />
-          </IconButton>
-        </Grid>
+        <Typography align="center">Principal</Typography>
       </Grid>
-    </Popover>
+      <Grid item xs={4} sm={4}>
+        <IconButton>
+          <DashboardRoundedIcon fontSize="large" />
+        </IconButton>
+      </Grid>
+      <Grid item xs={4} sm={4}>
+        <IconButton>
+          <DashboardRoundedIcon fontSize="large" />
+        </IconButton>
+      </Grid>
+      <Grid item xs={4} sm={4}>
+        <IconButton>
+          <DashboardRoundedIcon fontSize="large" />
+        </IconButton>
+      </Grid>
+      </Grid>
+    </Popover >
   )
 
 
-  return (
-    <AppBar elevation={1} className={classes.appBar}>
-      <Fragment>
-        {isAuthenticated ?
-          (
-            <AuthToolbar
-              classes={classes}
-              id={LoguedBarsId}
-              handleProfileMenuOpen={handleProfileMenuOpen}
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleDrawerToggle={handleDrawerToggle}
-              handleOpenBoxApp={handleOpenBoxApp}
+return (
+  <AppBar elevation={1} className={classes.appBar}>
+    <Fragment>
+      {isAuthenticated ?
+        (
+          <AuthToolbar
+            classes={classes}
+            id={LoguedBarsId}
+            handleProfileMenuOpen={handleProfileMenuOpen}
+            handleMobileMenuOpen={handleMobileMenuOpen}
+            handleDrawerToggle={handleDrawerToggle}
+            handleOpenBoxApp={handleOpenBoxApp}
 
-            />
-          )
-          :
-          (<MainToolbar classes={classes} />)}
-        {renderMobileMenu}
-        {renderMenu}
-        {renderBoxAplications}
-      </Fragment>
-    </AppBar>
-  )
+          />
+        )
+        :
+        (<MainToolbar classes={classes} />)}
+      {renderMobileMenu}
+      {renderMenu}
+      {renderBoxAplications}
+    </Fragment>
+  </AppBar>
+)
 }
 
 export default NavigationBar
