@@ -103,12 +103,7 @@ const NavigationBar = () => {
   const mobileMenuId = 'menu mobile';
   const menuId = 'menu desktop';
   const appbox = 'box of aplications';
-  const sesionAuth = document.cookie = 'auth0.is.authenticated'
-  const legacyAuth = document.cookie = '_legacy_auth0.is.authenticated'
-  const cookies = [{
-    sesionAuth: sesionAuth,
-    legacyAuth: legacyAuth
-  }]
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
