@@ -12,6 +12,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
 import { ReactComponent as dashboard } from '../../assets/icons/boxicons/dashboard.svg'
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,

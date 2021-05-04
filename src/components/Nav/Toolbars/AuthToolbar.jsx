@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import { getMetadata } from '../../../redux/actions/userActions';
 import logo from '../../../assets/icons/dspay-horizontal.svg'
-import GrainRoundedIcon from '@material-ui/icons/GrainRounded';
+import LayersRoundedIcon from '@material-ui/icons/LayersRounded';
 
 const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle, handleOpenBoxApp }) => {
   const { user, getAccessTokenSilently } = useAuth0();
@@ -43,7 +43,7 @@ const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, han
           {/* <Badge badgeContent={1} color="primary">
             <NotificationsIcon />
           </Badge> */}
-          <GrainRoundedIcon fontSize="large" />
+          <LayersRoundedIcon fontSize="large" />
         </IconButton>
         <div>
           <Typography gutterBottom className={classes.labelName}>{name.toUpperCase()}</Typography>
