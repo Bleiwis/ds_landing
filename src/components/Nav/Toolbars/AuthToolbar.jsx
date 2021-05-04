@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { getMetadata } from '../../../redux/actions/userActions';
 import logo from '../../../assets/icons/dspay-horizontal.svg'
 import LayersRoundedIcon from '@material-ui/icons/LayersRounded';
+import { useHistory } from 'react-router';
 
 const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, handleDrawerToggle, handleOpenBoxApp }) => {
   const { user, getAccessTokenSilently } = useAuth0();
@@ -14,7 +15,7 @@ const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, han
   const menuId = 'main menu';
   const mobileMenuId = 'mobile menu';
   const dispatch = useDispatch();
-
+  const history = useHistory();
   useEffect(() => {
     const getToken = async () => {
       const token = await getAccessTokenSilently()
@@ -26,7 +27,7 @@ const AuthToolbar = ({ classes, handleProfileMenuOpen, handleMobileMenuOpen, han
 
   return (
     <Toolbar>
-      <img src={logo} alt="logo" className={classes.logo} />
+      <img src={logo} alt="logo" className={classes.logo} onClick={() => history.push('/')} />
       <IconButton
         color="inherit"
         aria-label="open drawer"

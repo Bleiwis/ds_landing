@@ -1,5 +1,15 @@
 import React, { useState } from 'react'
-import { AppBar, Badge, Box, Card, Grid, IconButton, Menu, MenuItem, Popover, SvgIcon, Typography, } from '@material-ui/core'
+import {
+  AppBar,
+  Badge,
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  Popover,
+  SvgIcon,
+  Typography,
+} from '@material-ui/core'
 import { Fragment } from 'react'
 import AuthToolbar from './Toolbars/AuthToolbar'
 import MainToolbar from './Toolbars/MainToolbar'
@@ -208,51 +218,51 @@ const NavigationBar = () => {
           <IconButton href={`https://dashboard.cris-mur.tech`}>
             <SvgIcon component={dashboard} viewBox="0 0 32 32" style={{ fontSize: 60 }} />
           </IconButton>
-        <Typography align="center">Principal</Typography>
-      </Grid>
-      <Grid item xs={4} sm={4}>
-        <IconButton>
-          <DashboardRoundedIcon fontSize="large" />
-        </IconButton>
-      </Grid>
-      <Grid item xs={4} sm={4}>
-        <IconButton>
-          <DashboardRoundedIcon fontSize="large" />
-        </IconButton>
-      </Grid>
-      <Grid item xs={4} sm={4}>
-        <IconButton>
-          <DashboardRoundedIcon fontSize="large" />
-        </IconButton>
-      </Grid>
+          <Typography align="center">Principal</Typography>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <IconButton>
+            <DashboardRoundedIcon fontSize="large" />
+          </IconButton>
+        </Grid>
       </Grid>
     </Popover >
   )
 
 
-return (
-  <AppBar elevation={1} className={classes.appBar}>
-    <Fragment>
-      {isAuthenticated ?
-        (
-          <AuthToolbar
-            classes={classes}
-            id={LoguedBarsId}
-            handleProfileMenuOpen={handleProfileMenuOpen}
-            handleMobileMenuOpen={handleMobileMenuOpen}
-            handleDrawerToggle={handleDrawerToggle}
-            handleOpenBoxApp={handleOpenBoxApp}
+  return (
+    <AppBar elevation={1} className={classes.appBar}>
+      <Fragment>
+        {isAuthenticated ?
+          (
+            <AuthToolbar
+              classes={classes}
+              id={LoguedBarsId}
+              handleProfileMenuOpen={handleProfileMenuOpen}
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleDrawerToggle={handleDrawerToggle}
+              handleOpenBoxApp={handleOpenBoxApp}
 
-          />
-        )
-        :
-        (<MainToolbar classes={classes} />)}
-      {renderMobileMenu}
-      {renderMenu}
-      {renderBoxAplications}
-    </Fragment>
-  </AppBar>
-)
+            />
+          )
+          :
+          (<MainToolbar classes={classes} />)}
+        {renderMobileMenu}
+        {renderMenu}
+        {renderBoxAplications}
+      </Fragment>
+    </AppBar>
+  )
 }
 
 export default NavigationBar
