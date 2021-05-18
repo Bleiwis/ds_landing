@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Toolbar, Button } from '@material-ui/core'
+import { Toolbar, Button, IconButton, SvgIcon, Avatar } from '@material-ui/core'
 import logo from '../../../assets/icons/dspay-horizontal.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const MainToolbar = ({ classes }) => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [auth, setAuth] = useState(isAuthenticated);
   // useEffect(() => {
   //   if (isAuthenticated) { loginWithRedirect() }
@@ -21,8 +21,19 @@ const MainToolbar = ({ classes }) => {
         {
           auth ? () => {
             isAuthenticated()
-            console.log(auth)
           } : (<Button onClick={() => loginWithRedirect()}>EMPEZAR</Button>)
+        }
+      </div>
+      <div className={classes.sectionMobile}>
+        {
+          auth ?
+            (
+              <Avatar src={user?.photo} alt={user?.name} />
+            )
+            :
+            (
+              <Button onClick={() => loginWithRedirect()}>EMPEZAR</Button>
+            )
         }
       </div>
     </Toolbar>
