@@ -1,15 +1,5 @@
 import React, { useState } from 'react'
-import {
-  AppBar,
-  Badge,
-  Grid,
-  IconButton,
-  Menu,
-  MenuItem,
-  Popover,
-  SvgIcon,
-  Typography,
-} from '@material-ui/core'
+import { AppBar, Badge, Box, Card, Grid, IconButton, Menu, MenuItem, Popover, SvgIcon, Typography, } from '@material-ui/core'
 import { Fragment } from 'react'
 import AuthToolbar from './Toolbars/AuthToolbar'
 import MainToolbar from './Toolbars/MainToolbar'
@@ -23,6 +13,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
 import { ReactComponent as dashboard } from '../../assets/icons/boxicons/dashboard.svg'
 
+const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -46,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginLeft: 15,
+    marginRight: 15,
     height: 35,
     cursor: 'pointer',
     [theme.breakpoints.down('xs')]: {
@@ -72,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-
   labelName: {
     cursor: 'default'
   },
@@ -83,7 +74,13 @@ const useStyles = makeStyles((theme) => ({
     width: 260,
     height: 300,
     padding: 5
-  }
+  },
+  drawer: {
+    [theme.breakpoints.up('md')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
 
 }));
 
@@ -135,6 +132,13 @@ const NavigationBar = () => {
     setBoxAnchorel(null);
   }
 
+  const toolbarProps = {
+    handleProfileMenuOpen,
+    handleMobileMenuOpen,
+    handleDrawerToggle,
+    handleOpenBoxApp
+  }
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -151,7 +155,7 @@ const NavigationBar = () => {
   );
 
   const renderMobileMenu = (
-    <Menu
+    <Popover
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       id={mobileMenuId}
@@ -193,7 +197,7 @@ const NavigationBar = () => {
         </IconButton>
         <p>Salir</p>
       </MenuItem>
-    </Menu>
+    </Popover>
   );
 
   const renderBoxAplications = (
@@ -207,7 +211,6 @@ const NavigationBar = () => {
       open={boxApp}
       onClose={handleCloseBoxApp}
     >
-
       <Grid container spacing={1} justify="space-evenly" alignItems="center" className={classes.boxApp}>
         <Grid item xs={4} sm={4}>
           <IconButton href={`https://dashboard.cris-mur.tech`}>
@@ -234,29 +237,22 @@ const NavigationBar = () => {
     </Popover >
   )
 
-
   return (
-    <AppBar elevation={1} className={classes.appBar}>
-      <Fragment>
-        {isAuthenticated ?
-          (
-            <AuthToolbar
-              classes={classes}
-              id={LoguedBarsId}
-              handleProfileMenuOpen={handleProfileMenuOpen}
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleDrawerToggle={handleDrawerToggle}
-              handleOpenBoxApp={handleOpenBoxApp}
-
-            />
-          )
-          :
-          (<MainToolbar classes={classes} />)}
-        {renderMobileMenu}
-        {renderMenu}
-        {renderBoxAplications}
-      </Fragment>
-    </AppBar>
+    <Fragment>
+      <AppBar elevation={1} className={classes.appBar}>
+        <Fragment>
+          {
+            isAuthenticated ?
+              (<AuthToolbar classes={classes} id={LoguedBarsId} {...toolbarProps} />)
+              :
+              (<MainToolbar classes={classes} />)
+          }
+          {renderMobileMenu}
+          {renderMenu}
+          {renderBoxAplications}
+        </Fragment>
+      </AppBar>
+    </Fragment>
   )
 }
 
